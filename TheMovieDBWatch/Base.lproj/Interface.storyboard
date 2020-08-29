@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097.2" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
+    </dependencies>
+    <scenes>
+        <!--ListMoviesInterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="ListMoviesInterfaceController" id="AgC-eL-Hgc" customClass="ListMoviesInterfaceController" customModule="TheMovieDBWatch_Extension">
+                    <items>
+                        <table alignment="left" id="9f6-zi-bYd">
+                            <items>
+                                <tableRow identifier="ListMoviesRowController" id="TAc-8S-f55" customClass="ListMoviesRowController" customModule="TheMovieDBWatch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="ehh-tY-F2f">
+                                        <items>
+                                            <imageView width="40" alignment="left" id="6fx-xu-Qr0"/>
+                                            <group alignment="left" layout="vertical" id="Lu4-bM-ivR">
+                                                <items>
+                                                    <label alignment="left" text="Label" id="Is7-aU-g39"/>
+                                                    <label alignment="left" text="Label" id="RiA-3r-enG"/>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="moviesImageView" destination="6fx-xu-Qr0" id="FNT-kF-SmI"/>
+                                        <outlet property="titleLabel" destination="Is7-aU-g39" id="ncY-ev-ohf"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="tableView" destination="9f6-zi-bYd" id="ySB-5h-atc"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+    </scenes>
+</document>

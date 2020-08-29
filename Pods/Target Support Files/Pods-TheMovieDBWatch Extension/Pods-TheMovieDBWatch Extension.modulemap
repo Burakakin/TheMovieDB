@@ -1,0 +1,6 @@
+module Pods_TheMovieDBWatch_Extension {
+  umbrella header "Pods-TheMovieDBWatch Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}
