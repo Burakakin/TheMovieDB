@@ -14,19 +14,25 @@
                         <table alignment="left" id="9f6-zi-bYd">
                             <items>
                                 <tableRow identifier="ListMoviesRowController" id="TAc-8S-f55" customClass="ListMoviesRowController" customModule="TheMovieDBWatch_Extension">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="ehh-tY-F2f">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="12" id="ehh-tY-F2f">
                                         <items>
-                                            <imageView width="40" alignment="left" id="6fx-xu-Qr0"/>
+                                            <imageView width="40" height="50" alignment="left" verticalAlignment="center" id="6fx-xu-Qr0"/>
                                             <group alignment="left" layout="vertical" id="Lu4-bM-ivR">
                                                 <items>
-                                                    <label alignment="left" text="Label" id="Is7-aU-g39"/>
-                                                    <label alignment="left" text="Label" id="RiA-3r-enG"/>
+                                                    <label alignment="left" text="Label" numberOfLines="0" id="Is7-aU-g39">
+                                                        <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                    </label>
+                                                    <label alignment="left" text="Label" id="RiA-3r-enG">
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
                                                 </items>
                                             </group>
                                         </items>
+                                        <edgeInsets key="margins" left="5" right="5" top="5" bottom="5"/>
                                     </group>
                                     <connections>
                                         <outlet property="moviesImageView" destination="6fx-xu-Qr0" id="FNT-kF-SmI"/>
+                                        <outlet property="releaseDate" destination="RiA-3r-enG" id="nNq-D3-oVa"/>
                                         <outlet property="titleLabel" destination="Is7-aU-g39" id="ncY-ev-ohf"/>
                                     </connections>
                                 </tableRow>
@@ -39,6 +45,37 @@
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--MovieDetailInterfaceController-->
+        <scene sceneID="IZr-8p-1wy">
+            <objects>
+                <controller identifier="MovieDetailInterfaceController" id="z5d-aL-Uxl" customClass="MovieDetailInterfaceController" customModule="TheMovieDBWatch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" spacing="10" id="pbh-wA-SoZ">
+                            <items>
+                                <imageView width="40" height="50" alignment="center" id="S7d-Xw-13t"/>
+                                <label alignment="center" verticalAlignment="center" text="Label" numberOfLines="0" id="Lgs-Xd-8gt">
+                                    <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
+                                </label>
+                            </items>
+                            <edgeInsets key="margins" left="5" right="5" top="5" bottom="5"/>
+                        </group>
+                        <group width="1" alignment="left" id="Mgz-z0-uRY">
+                            <items>
+                                <label alignment="left" text="Label" numberOfLines="0" id="RXw-5m-RTH">
+                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="overview" destination="RXw-5m-RTH" id="urw-sN-KLi"/>
+                        <outlet property="poster" destination="S7d-Xw-13t" id="kZC-lM-hMP"/>
+                        <outlet property="titleLabel" destination="Lgs-Xd-8gt" id="nj1-1g-LPM"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="485" y="345"/>
         </scene>
     </scenes>
 </document>

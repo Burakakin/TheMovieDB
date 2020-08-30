@@ -14,6 +14,9 @@
 		A826CD3324FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD3124FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift */; };
 		A826CD3424FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A826CD3224FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib */; };
 		A826CD3624FBF836004B6C8F /* ListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD3524FBF836004B6C8F /* ListPresenterTests.swift */; };
+		A826CD3924FC0C8A004B6C8F /* MovieDetailInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD3824FC0C8A004B6C8F /* MovieDetailInterfaceController.swift */; };
+		A826CD3A24FC0D0A004B6C8F /* MovieDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A884807B24F99AA20092B1C0 /* MovieDetailWorker.swift */; };
+		A826CD3B24FC0D3D004B6C8F /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C3B61024FADB7B000C9BA8 /* MovieDetail.swift */; };
 		A8847FF224F98FA10092B1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8847FF124F98FA10092B1C0 /* AppDelegate.swift */; };
 		A8847FF924F98FA10092B1C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8847FF724F98FA10092B1C0 /* Main.storyboard */; };
 		A8847FFB24F98FA20092B1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8847FFA24F98FA20092B1C0 /* Assets.xcassets */; };
@@ -144,6 +147,7 @@
 		A826CD3124FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesCollectionCell.swift; sourceTree = "<group>"; };
 		A826CD3224FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMoviesCollectionCell.xib; sourceTree = "<group>"; };
 		A826CD3524FBF836004B6C8F /* ListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenterTests.swift; sourceTree = "<group>"; };
+		A826CD3824FC0C8A004B6C8F /* MovieDetailInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailInterfaceController.swift; sourceTree = "<group>"; };
 		A8847FEE24F98FA10092B1C0 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8847FF124F98FA10092B1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8847FF824F98FA10092B1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -470,6 +474,7 @@
 				A8C3B5E424FAAF1C000C9BA8 /* PushNotificationPayload.apns */,
 				A8C3B60024FAB624000C9BA8 /* ListMoviesInterfaceController.swift */,
 				A8C3B60224FAB776000C9BA8 /* ListMoviesRowController.swift */,
+				A826CD3824FC0C8A004B6C8F /* MovieDetailInterfaceController.swift */,
 			);
 			path = "TheMovieDBWatch Extension";
 			sourceTree = "<group>";
@@ -800,10 +805,12 @@
 			files = (
 				A8C3B5FC24FAB1AC000C9BA8 /* Codable+Extension.swift in Sources */,
 				A8C3B5F624FAB0FF000C9BA8 /* Base.swift in Sources */,
+				A826CD3A24FC0D0A004B6C8F /* MovieDetailWorker.swift in Sources */,
 				A8C3B5F124FAB0C3000C9BA8 /* MoviesUpComing.swift in Sources */,
 				A8C3B60324FAB776000C9BA8 /* ListMoviesRowController.swift in Sources */,
 				A8C3B5FB24FAB158000C9BA8 /* EndpointProtocol.swift in Sources */,
 				A8C3B5F924FAB145000C9BA8 /* MovieEndpoint.swift in Sources */,
+				A826CD3B24FC0D3D004B6C8F /* MovieDetail.swift in Sources */,
 				A8C3B5F724FAB12F000C9BA8 /* EndpointExecutable.swift in Sources */,
 				A8C3B5E024FAAF1B000C9BA8 /* NotificationController.swift in Sources */,
 				A8C3B5F024FAB0AF000C9BA8 /* ListWorker.swift in Sources */,
@@ -811,6 +818,7 @@
 				A8C3B5DE24FAAF1B000C9BA8 /* ExtensionDelegate.swift in Sources */,
 				A8C3B60124FAB624000C9BA8 /* ListMoviesInterfaceController.swift in Sources */,
 				A8C3B5F824FAB137000C9BA8 /* SessionManager.swift in Sources */,
+				A826CD3924FC0C8A004B6C8F /* MovieDetailInterfaceController.swift in Sources */,
 				A8C3B61E24FB07F6000C9BA8 /* MovieDetailRequest.swift in Sources */,
 				A8C3B5F324FAB0CF000C9BA8 /* MovieList.swift in Sources */,
 				A8C3B5FD24FAB2B2000C9BA8 /* URLRequestConvertible+.swift in Sources */,

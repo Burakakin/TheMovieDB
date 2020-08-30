@@ -36,8 +36,8 @@ class ListMoviesInterfaceController: WKInterfaceController {
     
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        let movie = movies[rowIndex]
-        //pushController(withName: "PlaceOnMapInterfaceController", context: place)
+        let movieId = movies[rowIndex].id
+        pushController(withName: "MovieDetailInterfaceController", context: movieId)
     }
     
     
@@ -54,3 +54,7 @@ class ListMoviesInterfaceController: WKInterfaceController {
 
     
 }
+
+
+
+
