@@ -17,6 +17,7 @@ protocol ListDisplayLogic: class
     func displayUpcomingMovies(viewModel: List.UpcomingMovies.ViewModel)
     func displayNowPlayingMovies(viewModel: List.NowPlayingMovies.ViewModel)
     func displayMovieDetail(viewModel: List.SelectedMovie.ViewModel)
+    func displaySearchMovies(viewModel: List.SearchMovie.ViewModel)
 }
 
 class ListViewController: UIViewController, ListDisplayLogic
@@ -26,12 +27,15 @@ class ListViewController: UIViewController, ListDisplayLogic
     
     // MARK: OUTLETS
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var searchTableViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: PROPERTY
     var sections = [Section]()
     
     var upComingSections = [Section]()
     var nowPlayingSections = [Section]()
+    var searchMovies: [String] = []
     
     // MARK: Object lifecycle
     
@@ -83,9 +87,19 @@ class ListViewController: UIViewController, ListDisplayLogic
         
         tableView.registerNib(ListMoviesCell.self)
         tableView.registerNib(SliderCell.self)
+        configureSearchBar()
         fetch()
     }
     
+    func configureSearchBar()
+    {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Places"
+        self.navigationItem.searchController = searchController
+        self.definesPresentationContext = true
+    }
     // MARK: Do something
     
     //@IBOutlet weak var nameTextField: UITextField!
@@ -109,46 +123,82 @@ class ListViewController: UIViewController, ListDisplayLogic
     func displayMovieDetail(viewModel: List.SelectedMovie.ViewModel) {
         router?.routeToDetail(segue: nil)
     }
+    
+    func displaySearchMovies(viewModel: List.SearchMovie.ViewModel) {
+        searchMovies = viewModel.title
+        searchTableView.reloadData()
+        searchTableViewHeightConstraint.constant = CGFloat(44 * searchMovies.count)
+    }
 }
 
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        sections = nowPlayingSections +
-                   upComingSections
-        return sections.count
+        if tableView == searchTableView {
+            return 1
+        }
+        else {
+            sections = nowPlayingSections +
+                       upComingSections
+            return sections.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].items.count
+        if tableView == searchTableView {
+            return searchMovies.count
+        }
+        else {
+            return sections[section].items.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = sections[indexPath.section].items[indexPath.row]
-        let cell = tableView.dequeueCell(item, for: indexPath)
-        item.configure(cell: cell)
-        
-        switch cell {
-        case let cell as SliderCell:
-            cell.delegate = self
-        default:
-            break
+        if tableView == searchTableView {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell.textLabel?.text = searchMovies[indexPath.row]
+            return cell
         }
-        
-        return cell
+        else {
+            let item = sections[indexPath.section].items[indexPath.row]
+            let cell = tableView.dequeueCell(item, for: indexPath)
+            item.configure(cell: cell)
+            
+            switch cell {
+            case let cell as SliderCell:
+                cell.delegate = self
+            default:
+                break
+            }
+            
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch sections[indexPath.section].items[0] {
-        case is SliderCellConfigurator:
-            return 300
-        default:
+        if tableView == searchTableView {
             return UITableView.automaticDimension
+        }
+        else {
+            switch sections[indexPath.section].items[0] {
+            case is SliderCellConfigurator:
+                return 300
+            default:
+                return UITableView.automaticDimension
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        interactor?.goToDetail(request: List.SelectedMovie.Request(type: .Upcoming, index: indexPath.row))
+        if tableView == searchTableView {
+            interactor?.goToDetail(request: List.SelectedMovie.Request(type: .Search, index: indexPath.row))
+        }
+        else {
+            interactor?.goToDetail(request: List.SelectedMovie.Request(type: .Upcoming, index: indexPath.row))
+        }
+        
     }
     
 }
@@ -158,5 +208,33 @@ extension ListViewController: CollectionViewDelegate {
         interactor?.goToDetail(request: List.SelectedMovie.Request(type: .NowPlaying, index: index))
     }
     
+    
+}
+
+
+extension ListViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 2 {
+            let request = List.SearchMovie.Request(model: SearchMovieRequest(query: searchText))
+            interactor?.fetchSearchMovies(request: request)
+        }
+        else if searchText.count == 0 {
+            searchTableViewHeightConstraint.constant = 0
+            searchMovies.removeAll()
+            searchTableView.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request = List.SearchMovie.Request(model: SearchMovieRequest(query: searchBar.text ?? ""))
+        interactor?.fetchSearchMovies(request: request)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchTableViewHeightConstraint.constant = 0
+        searchMovies.removeAll()
+        searchTableView.reloadData()
+    }
     
 }

@@ -17,6 +17,7 @@ protocol ListPresentationLogic
     func presentUpcomingMovies(response: List.UpcomingMovies.Response)
     func presentNowPlayingMovies(response: List.NowPlayingMovies.Response)
     func presentMovieDetail(response: List.SelectedMovie.Response)
+    func presentSearchMovie(response: List.SearchMovie.Response)
 }
 
 class ListPresenter: ListPresentationLogic
@@ -54,5 +55,9 @@ class ListPresenter: ListPresentationLogic
     
     func presentMovieDetail(response: List.SelectedMovie.Response) {
         viewController?.displayMovieDetail(viewModel: List.SelectedMovie.ViewModel())
+    }
+    
+    func presentSearchMovie(response: List.SearchMovie.Response) {
+        viewController?.displaySearchMovies(viewModel: List.SearchMovie.ViewModel(title: response.movies.map { $0.title }))
     }
 }

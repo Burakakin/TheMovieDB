@@ -17,12 +17,14 @@ protocol ListBusinessLogic
     func fetchUpcomingMovies(request: List.UpcomingMovies.Request)
     func fetchNowPlayingMovies(request: List.NowPlayingMovies.Request)
     func goToDetail(request: List.SelectedMovie.Request)
+    func fetchSearchMovies(request: List.SearchMovie.Request)
 }
 
 protocol ListDataStore
 {
     var moviesUpcoming: [MovieList] { get set }
     var moviesNowPlaying: [MovieList] { get set }
+    var searchMovies: [MovieList] { get set }
     var selectedMovieId: Int? { get set }
     
 }
@@ -34,6 +36,7 @@ class ListInteractor: ListBusinessLogic, ListDataStore
     
     var moviesUpcoming: [MovieList] = []
     var moviesNowPlaying: [MovieList] = []
+    var searchMovies: [MovieList] = []
     var selectedMovieId: Int?
     // MARK: Do something
     
@@ -77,6 +80,24 @@ class ListInteractor: ListBusinessLogic, ListDataStore
         case .Upcoming:
             self.selectedMovieId = moviesUpcoming[request.index].id
             presenter?.presentMovieDetail(response: List.SelectedMovie.Response())
+        case .Search:
+            self.selectedMovieId = searchMovies[request.index].id
+            presenter?.presentMovieDetail(response: List.SelectedMovie.Response())
+        }
+    }
+    
+    
+    func fetchSearchMovies(request: List.SearchMovie.Request) {
+        worker.fetchSearchMovies(request: request.model) { result in
+            switch result {
+            case .success(let response):
+                guard let responseData = response.results else { return }
+                self.searchMovies = responseData
+                let response = List.SearchMovie.Response(movies: responseData)
+                self.presenter?.presentSearchMovie(response: response)
+            case .failure:
+                break
+            }
         }
     }
 }

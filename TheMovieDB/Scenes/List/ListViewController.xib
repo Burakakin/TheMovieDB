@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController" customModule="TheMovieDB" customModuleProvider="target">
             <connections>
+                <outlet property="searchTableView" destination="dkk-RI-hBd" id="jW6-pU-U3r"/>
+                <outlet property="searchTableViewHeightConstraint" destination="pP1-gv-iQX" id="dfd-Zr-eg2"/>
                 <outlet property="tableView" destination="dy0-TA-pbY" id="rKv-es-hnD"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fTL-pD-ezt"/>
             </connections>
@@ -26,11 +28,25 @@
                         <outlet property="delegate" destination="-1" id="G4b-vR-5hN"/>
                     </connections>
                 </tableView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dkk-RI-hBd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="1"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="pP1-gv-iQX"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9KF-em-faY"/>
+                        <outlet property="delegate" destination="-1" id="9Pd-9O-G8s"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="dkk-RI-hBd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="1GP-Hl-48i"/>
                 <constraint firstItem="dy0-TA-pbY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2uE-oU-NSD"/>
+                <constraint firstItem="dkk-RI-hBd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8Cx-OD-k9R"/>
                 <constraint firstItem="dy0-TA-pbY" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="eaU-Fn-3Gc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dkk-RI-hBd" secondAttribute="trailing" id="kom-XS-XGv"/>
                 <constraint firstAttribute="bottom" secondItem="dy0-TA-pbY" secondAttribute="bottom" id="rUE-Pn-Fbv"/>
                 <constraint firstItem="dy0-TA-pbY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wRI-2s-mg0"/>
             </constraints>

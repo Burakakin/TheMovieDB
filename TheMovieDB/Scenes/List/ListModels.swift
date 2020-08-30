@@ -58,6 +58,7 @@ enum List
             enum MoviesType {
                 case Upcoming
                 case NowPlaying
+                case Search
             }
         }
         struct Response
@@ -67,6 +68,22 @@ enum List
         struct ViewModel
         {
             
+        }
+    }
+    
+    enum SearchMovie
+    {
+        struct Request
+        {
+            let model: SearchMovieRequest
+        }
+        struct Response
+        {
+            let movies: [MovieList]
+        }
+        struct ViewModel
+        {
+            let title: [String]
         }
     }
 }

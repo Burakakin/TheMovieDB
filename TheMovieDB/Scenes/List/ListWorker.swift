@@ -23,4 +23,9 @@ class ListWorker
     {
         MovieRouter.moviesNowPlaying(request).executeDecodable(withBase: completion)
     }
+    
+    func fetchSearchMovies(request: SearchMovieRequest, completion: @escaping DecodableResultWithBaseHandler<[MovieList]>)
+    {
+        MovieRouter.searchMovies(request).executeDecodable(withBase: completion)
+    }
 }

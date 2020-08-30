@@ -15,6 +15,8 @@ enum MoviePath {
     static let moviesNowPlaying = "/movie/now_playing"
     static let movieDetail = "/movie/"
     
+    static let searchMovies = "/search/movie"
+    
 }
 
 enum MovieRouter {
@@ -22,6 +24,8 @@ enum MovieRouter {
     case moviesNowPlaying(MoviesNowPlayingRequest)
     case movieDetail(MovieDetailRequest)
     case movieDetailSimilar(MovieDetailRequest)
+    
+    case searchMovies(SearchMovieRequest)
 }
 
 
@@ -37,6 +41,9 @@ extension MovieRouter: RequestConvertible {
             return MoviePath.movieDetail + model.movieId
         case .movieDetailSimilar(let model):
             return MoviePath.movieDetail + model.movieId + "/similar"
+            
+        case .searchMovies:
+            return MoviePath.searchMovies
         }
     }
     
@@ -60,6 +67,8 @@ extension MovieRouter: RequestConvertible {
         case .moviesUpcoming(let model):
             return model.dictionary
         case .moviesNowPlaying(let model):
+            return model.dictionary
+        case .searchMovies(let model):
             return model.dictionary
         default:
             return nil
