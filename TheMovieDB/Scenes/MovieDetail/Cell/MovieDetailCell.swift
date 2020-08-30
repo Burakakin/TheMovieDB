@@ -8,12 +8,22 @@
 
 import UIKit
 
-class MovieDetailCell: UITableViewCell {
+typealias MovieDetailCellConfigurator = TableCellConfigurator<MovieDetailCell, MovieDetailCellViewModel>
+
+struct MovieDetailCellViewModel {
+    let title: String
+    let releaseDate: String
+    let overview: String
+    let posterPath: String
+}
+
+class MovieDetailCell: UITableViewCell, CellConfigurable {
 
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var starLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -27,4 +37,10 @@ class MovieDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(with model: MovieDetailCellViewModel) {
+        posterImageView.setImage(model.posterPath)
+        titleLabel.text = model.title
+        overviewLabel.text = model.overview
+        releaseDateLabel.text = model.releaseDate
+    }
 }

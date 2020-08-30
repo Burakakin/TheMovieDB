@@ -30,7 +30,7 @@ class ListPresenter: ListPresentationLogic
         var sections: [Section] = []
         
         let upcoming: [CellConfigurator] = response.response.map {
-            return ListMoviesCellConfigurator(item: ListMoviesCellViewModel(title: $0.title, releaseDate: $0.releaseDate, orginalTitle: $0.originalTitle, posterPath: $0.posterPath ))
+            return ListMoviesCellConfigurator(item: ListMoviesCellViewModel(title: $0.title, releaseDate: $0.releaseDate, orginalTitle: $0.originalTitle, posterPath: $0.posterPath ?? ""))
         }
         
         sections.append(Section(items: upcoming))

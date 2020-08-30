@@ -14,18 +14,36 @@ import UIKit
 
 protocol MovieDetailPresentationLogic
 {
-  func presentSomething(response: MovieDetailm.Detail.Response)
+    func presentDetail(response: MovieDetailm.Detail.Response)
+    func goToDetail(request: MovieDetailm.SelectedMovie.Response)
+    
 }
 
 class MovieDetailPresenter: MovieDetailPresentationLogic
 {
-  weak var viewController: MovieDetailDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: MovieDetailm.Detail.Response)
-  {
-    let viewModel = MovieDetailm.Detail.ViewModel()
-    //viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: MovieDetailDisplayLogic?
+    
+    // MARK: Do something
+    
+    func presentDetail(response: MovieDetailm.Detail.Response)
+    {
+        
+        var sections: [Section] = []
+        
+        let detail: [CellConfigurator] = [MovieDetailCellConfigurator(item: MovieDetailCellViewModel(title: response.movieDetail.title, releaseDate: response.movieDetail.releaseDate, overview: response.movieDetail.overview, posterPath: response.movieDetail.posterPath))]
+        
+        sections.append(Section(items: detail))
+        
+        let similar: [CellConfigurator] = [SimilarMoviesCellConfigurator(item: SimilarMoviesCellViewModel(similarMovies: response.similarMovies))]
+        
+        sections.append(Section(items: similar))
+        
+        let viewModel = MovieDetailm.Detail.ViewModel(sections: sections)
+        
+        viewController?.displayDetail(viewModel: viewModel)
+    }
+    
+    func goToDetail(request: MovieDetailm.SelectedMovie.Response) {
+        viewController?.goToDetail(viewModel: MovieDetailm.SelectedMovie.ViewModel())
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 struct MovieDetail: Codable {
     let adult: Bool
-    let backdropPath: String
+    let backdropPath: String?
     
     let budget: Int
     let genres: [Genre]

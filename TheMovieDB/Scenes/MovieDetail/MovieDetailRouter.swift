@@ -14,7 +14,7 @@ import UIKit
 
 @objc protocol MovieDetailRoutingLogic
 {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToDetail(segue: UIStoryboardSegue?)
 }
 
 protocol MovieDetailDataPassing
@@ -29,32 +29,25 @@ class MovieDetailRouter: NSObject, MovieDetailRoutingLogic, MovieDetailDataPassi
   
   // MARK: Routing
   
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  func routeToDetail(segue: UIStoryboardSegue?)
+  {
+      let destinationVC = MovieDetailViewController()
+      var destinationDS = destinationVC.router!.dataStore!
+      passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+      navigateToSomewhere(source: viewController!, destination: destinationVC)
+  }
 
   // MARK: Navigation
   
-  //func navigateToSomewhere(source: MovieDetailViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+  func navigateToSomewhere(source: MovieDetailViewController, destination: MovieDetailViewController)
+  {
+    source.navigationController?.pushViewController(destination, animated: true)
+  }
   
   // MARK: Passing data
   
-  //func passDataToSomewhere(source: MovieDetailDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToSomewhere(source: MovieDetailDataStore, destination: inout MovieDetailDataStore)
+  {
+    destination.selectedMovieId = source.selectedMovieId
+  }
 }

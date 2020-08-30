@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		18504A9533FCCF5B7B04EC07 /* Pods_TheMovieDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D73A18B9BEB464041D82E2A8 /* Pods_TheMovieDB.framework */; };
 		906329922CA4BF1B9294237D /* libPods-TheMovieDBWatch Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20A05EAE581B4906A42C6213 /* libPods-TheMovieDBWatch Extension.a */; };
+		A826CD2F24FBDF12004B6C8F /* SimilarMoviesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD2D24FBDF11004B6C8F /* SimilarMoviesCell.swift */; };
+		A826CD3024FBDF12004B6C8F /* SimilarMoviesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A826CD2E24FBDF11004B6C8F /* SimilarMoviesCell.xib */; };
+		A826CD3324FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD3124FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift */; };
+		A826CD3424FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A826CD3224FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib */; };
+		A826CD3624FBF836004B6C8F /* ListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A826CD3524FBF836004B6C8F /* ListPresenterTests.swift */; };
 		A8847FF224F98FA10092B1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8847FF124F98FA10092B1C0 /* AppDelegate.swift */; };
 		A8847FF924F98FA10092B1C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8847FF724F98FA10092B1C0 /* Main.storyboard */; };
 		A8847FFB24F98FA20092B1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8847FFA24F98FA20092B1C0 /* Assets.xcassets */; };
@@ -134,6 +139,11 @@
 		20A05EAE581B4906A42C6213 /* libPods-TheMovieDBWatch Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TheMovieDBWatch Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F54C0B6A3879D9288D5921 /* Pods-TheMovieDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDB.release.xcconfig"; path = "Target Support Files/Pods-TheMovieDB/Pods-TheMovieDB.release.xcconfig"; sourceTree = "<group>"; };
 		63FDDF84EB148512A447E7EA /* Pods-TheMovieDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDB.debug.xcconfig"; path = "Target Support Files/Pods-TheMovieDB/Pods-TheMovieDB.debug.xcconfig"; sourceTree = "<group>"; };
+		A826CD2D24FBDF11004B6C8F /* SimilarMoviesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesCell.swift; sourceTree = "<group>"; };
+		A826CD2E24FBDF11004B6C8F /* SimilarMoviesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMoviesCell.xib; sourceTree = "<group>"; };
+		A826CD3124FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarMoviesCollectionCell.swift; sourceTree = "<group>"; };
+		A826CD3224FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarMoviesCollectionCell.xib; sourceTree = "<group>"; };
+		A826CD3524FBF836004B6C8F /* ListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenterTests.swift; sourceTree = "<group>"; };
 		A8847FEE24F98FA10092B1C0 /* TheMovieDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8847FF124F98FA10092B1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8847FF824F98FA10092B1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -467,6 +477,7 @@
 		A8C3B61224FADC0D000C9BA8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A826CD3524FBF836004B6C8F /* ListPresenterTests.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -476,6 +487,10 @@
 			children = (
 				A8C3B61824FAF745000C9BA8 /* MovieDetailCell.swift */,
 				A8C3B61924FAF745000C9BA8 /* MovieDetailCell.xib */,
+				A826CD2D24FBDF11004B6C8F /* SimilarMoviesCell.swift */,
+				A826CD2E24FBDF11004B6C8F /* SimilarMoviesCell.xib */,
+				A826CD3124FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift */,
+				A826CD3224FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -626,6 +641,8 @@
 				A8C3B60724FAB9BC000C9BA8 /* SliderCell.xib in Resources */,
 				A8847FFB24F98FA20092B1C0 /* Assets.xcassets in Resources */,
 				A884807924F99A8C0092B1C0 /* ListViewController.xib in Resources */,
+				A826CD3024FBDF12004B6C8F /* SimilarMoviesCell.xib in Resources */,
+				A826CD3424FBDFED004B6C8F /* SimilarMoviesCollectionCell.xib in Resources */,
 				A8847FF924F98FA10092B1C0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,11 +764,13 @@
 				A884808124F99AA20092B1C0 /* MovieDetailWorker.swift in Sources */,
 				A884803424F990380092B1C0 /* TableCellConfigurator.swift in Sources */,
 				A884807624F99A800092B1C0 /* ListViewController.swift in Sources */,
+				A826CD2F24FBDF12004B6C8F /* SimilarMoviesCell.swift in Sources */,
 				A884808024F99AA20092B1C0 /* MovieDetailPresenter.swift in Sources */,
 				A884801F24F990050092B1C0 /* EndpointProtocol.swift in Sources */,
 				A8C3B61124FADB7B000C9BA8 /* MovieDetail.swift in Sources */,
 				A884807724F99A800092B1C0 /* ListInteractor.swift in Sources */,
 				A884803B24F991A80092B1C0 /* MovieList.swift in Sources */,
+				A826CD3324FBDFED004B6C8F /* SimilarMoviesCollectionCell.swift in Sources */,
 				A884808424F99AA20092B1C0 /* MovieDetailViewController.swift in Sources */,
 				A884803124F990380092B1C0 /* URLRequestConvertible+.swift in Sources */,
 				A884803524F990380092B1C0 /* CellConfigurable.swift in Sources */,
@@ -771,6 +790,7 @@
 			files = (
 				A8C3B61624FADC98000C9BA8 /* Seeds.swift in Sources */,
 				A884800924F98FA30092B1C0 /* TheMovieDBTests.swift in Sources */,
+				A826CD3624FBF836004B6C8F /* ListPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

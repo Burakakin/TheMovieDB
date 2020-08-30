@@ -14,19 +14,38 @@ import UIKit
 
 enum MovieDetailm
 {
-  // MARK: Use cases
-  
-  enum Detail
-  {
-    struct Request
+    // MARK: Use cases
+    
+    enum Detail
     {
-        
+        struct Request
+        {
+            
+        }
+        struct Response
+        {
+            let movieDetail: MovieDetail
+            let similarMovies: [MovieList]
+        }
+        struct ViewModel
+        {
+            let sections: [Section]
+        }
     }
-    struct Response
+    
+    enum SelectedMovie
     {
+        struct Request
+        {
+            let index: Int
+        }
+        struct Response
+        {
+            
+        }
+        struct ViewModel
+        {
+            
+        }
     }
-    struct ViewModel
-    {
-    }
-  }
 }

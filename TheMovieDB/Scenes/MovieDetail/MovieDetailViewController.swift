@@ -14,7 +14,8 @@ import UIKit
 
 protocol MovieDetailDisplayLogic: class
 {
-    //func displaySomething(viewModel: MovieDetailm.Detail.ViewModel)
+    func displayDetail(viewModel: MovieDetailm.Detail.ViewModel)
+    func goToDetail(viewModel: MovieDetailm.SelectedMovie.ViewModel)
 }
 
 class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic
@@ -23,7 +24,9 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic
     var router: (NSObjectProtocol & MovieDetailRoutingLogic & MovieDetailDataPassing)?
     
     @IBOutlet weak var tableView: UITableView!
-    // MARK: Object lifecycle
+  
+    
+    var sections: [Section] = []
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
     {
@@ -70,7 +73,15 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerNib(MovieDetailCell.self)
+        tableView.registerNib(SimilarMoviesCell.self)
+        
         fetchMovieDetail()
+        
+    
     }
     
     // MARK: Do something
@@ -82,5 +93,55 @@ class MovieDetailViewController: UIViewController, MovieDetailDisplayLogic
         interactor?.fetchMovieDetail(request: MovieDetailm.Detail.Request())
     }
     
-   
+    func displayDetail(viewModel: MovieDetailm.Detail.ViewModel) {
+        sections = viewModel.sections
+        tableView.reloadData()
+    }
+    
+    func goToDetail(viewModel: MovieDetailm.SelectedMovie.ViewModel) {
+        router?.routeToDetail(segue: nil)
+    }
+}
+
+
+extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].items.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = sections[indexPath.section].items[indexPath.row]
+        let cell = tableView.dequeueCell(item, for: indexPath)
+        item.configure(cell: cell)
+        
+        switch cell {
+        case let cell as SimilarMoviesCell:
+            cell.delegate = self
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch sections[indexPath.section].items[0] {
+        case is SimilarMoviesCellConfigurator:
+            return 350
+        default:
+            return UITableView.automaticDimension
+        }
+    }
+    
+}
+
+extension MovieDetailViewController: SimilarMoviesCollectionViewDelegate {
+    func setIndex(index: Int) {
+        interactor?.goToDetail(request: MovieDetailm.SelectedMovie.Request(index: index))
+    }
+    
+    
 }

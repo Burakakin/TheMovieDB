@@ -15,12 +15,14 @@ import UIKit
 protocol MovieDetailBusinessLogic
 {
     func fetchMovieDetail(request: MovieDetailm.Detail.Request)
+    func goToDetail(request: MovieDetailm.SelectedMovie.Request)
 }
 
 protocol MovieDetailDataStore
 {
     var selectedMovieId: Int? { get set }
     var similarMovies: [MovieList] { get set }
+    var movieDetail: MovieDetail? { get set }
 }
 
 class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore
@@ -31,6 +33,7 @@ class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore
     
     var selectedMovieId: Int?
     var similarMovies: [MovieList] = []
+    var movieDetail: MovieDetail?
     // MARK: Do something
     
     func fetchMovieDetail(request: MovieDetailm.Detail.Request)
@@ -38,8 +41,10 @@ class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore
         worker.fetchMovieDetails(request: MovieDetailRequest(movieId: String(selectedMovieId!))) { (result) in
             switch result {
             case .success(let response):
+                self.movieDetail = response
                 self.fetchSimilarMovies()
             case .failure(let error):
+                print(error.localizedDescription)
                 break
             }
         }
@@ -54,12 +59,19 @@ class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore
             switch result {
             case .success(let response):
                 self.similarMovies = response.results!
-                let response = MovieDetailm.Detail.Response()
-                self.presenter?.presentSomething(response: response)
+                let response = MovieDetailm.Detail.Response(movieDetail: self.movieDetail!, similarMovies: self.similarMovies)
+                self.presenter?.presentDetail(response: response)
             case .failure(let error):
+                print(error.localizedDescription)
                 break
             }
         }
+    }
+    
+    func goToDetail(request: MovieDetailm.SelectedMovie.Request) {
+        self.selectedMovieId = similarMovies[request.index].id
+        self.presenter?.goToDetail(request: MovieDetailm.SelectedMovie.Response())
+        
     }
     
 }
