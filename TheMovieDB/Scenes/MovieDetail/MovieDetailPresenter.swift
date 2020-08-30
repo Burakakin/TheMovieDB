@@ -30,7 +30,7 @@ class MovieDetailPresenter: MovieDetailPresentationLogic
         
         var sections: [Section] = []
         
-        let detail: [CellConfigurator] = [MovieDetailCellConfigurator(item: MovieDetailCellViewModel(title: response.movieDetail.title, releaseDate: response.movieDetail.releaseDate, overview: response.movieDetail.overview, posterPath: response.movieDetail.posterPath))]
+        let detail: [CellConfigurator] = [MovieDetailCellConfigurator(item: MovieDetailCellViewModel(title: response.movieDetail.title, releaseDate: response.movieDetail.releaseDate, overview: response.movieDetail.overview, posterPath: response.movieDetail.posterPath, star: String(response.movieDetail.popularity)))]
         
         sections.append(Section(items: detail))
         

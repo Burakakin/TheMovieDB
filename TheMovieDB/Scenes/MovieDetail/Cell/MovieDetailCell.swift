@@ -15,6 +15,7 @@ struct MovieDetailCellViewModel {
     let releaseDate: String
     let overview: String
     let posterPath: String
+    let star: String
 }
 
 class MovieDetailCell: UITableViewCell, CellConfigurable {
@@ -42,5 +43,6 @@ class MovieDetailCell: UITableViewCell, CellConfigurable {
         titleLabel.text = model.title
         overviewLabel.text = model.overview
         releaseDateLabel.text = model.releaseDate
+        starLabel.text = model.star
     }
 }
